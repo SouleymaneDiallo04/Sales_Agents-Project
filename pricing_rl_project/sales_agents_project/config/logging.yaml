@@ -1,0 +1,78 @@
+version: 1
+disable_existing_loggers: false
+
+formatters:
+  detailed:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+
+  json:
+    class: pythonjsonlogger.jsonlogger.JsonFormatter
+    format: '%(asctime)s %(name)s %(levelname)s %(message)s'
+
+  simple:
+    format: '%(levelname)s - %(message)s'
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: simple
+    stream: ext://sys.stdout
+
+  file_general:
+    class: logging.handlers.RotatingFileHandler
+    level: INFO
+    formatter: detailed
+    filename: logs/sales_agents.log
+    maxBytes: 10485760  # 10MB
+    backupCount: 5
+
+  file_training:
+    class: logging.handlers.RotatingFileHandler
+    level: DEBUG
+    formatter: json
+    filename: logs/training_logs/training.log
+    maxBytes: 52428800  # 50MB
+    backupCount: 10
+
+  file_pricing:
+    class: logging.handlers.RotatingFileHandler
+    level: INFO
+    formatter: json
+    filename: logs/pricing_decisions/pricing.log
+    maxBytes: 10485760  # 10MB
+    backupCount: 5
+
+  file_errors:
+    class: logging.handlers.RotatingFileHandler
+    level: ERROR
+    formatter: detailed
+    filename: logs/errors.log
+    maxBytes: 5242880  # 5MB
+    backupCount: 3
+
+loggers:
+  sales_agents:
+    level: DEBUG
+    handlers: [console, file_general, file_errors]
+    propagate: no
+
+  training:
+    level: DEBUG
+    handlers: [console, file_training, file_errors]
+    propagate: no
+
+  pricing:
+    level: INFO
+    handlers: [file_pricing, file_errors]
+    propagate: no
+
+  api:
+    level: INFO
+    handlers: [console, file_general, file_errors]
+    propagate: no
+
+root:
+  level: INFO
+  handlers: [console, file_general]

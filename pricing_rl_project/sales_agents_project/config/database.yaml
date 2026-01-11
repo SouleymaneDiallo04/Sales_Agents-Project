@@ -1,0 +1,33 @@
+database:
+  host: "127.0.0.1"
+  port: 3306
+  name: "rl_data_base"
+  user: "root"
+  password: ""
+  charset: "utf8mb4"
+  
+connections:
+  pool_size: 10
+  max_overflow: 20
+  pool_timeout: 30
+  
+redis:
+  host: "localhost"
+  port: 6379
+  db: 0
+  decode_responses: true
+  
+tables:
+  products: "products"
+  competitors: "competitors"
+  pricing_states: "pricing_states"
+  pricing_decisions: "pricing_decisions"
+  pricing_results: "pricing_results"
+  experience_replay: "experience_replay"
+  rl_models: "rl_models"
+  system_monitoring: "system_monitoring"
+  
+sync:
+  pricing_interval: "5 minutes"
+  competitor_update: "1 hour"
+  training_batch: 1000

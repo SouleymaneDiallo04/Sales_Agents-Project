@@ -1,0 +1,57 @@
+algorithms:
+  ppo:
+    learning_rate: 0.0003
+    n_steps: 2048
+    batch_size: 64
+    n_epochs: 10
+    gamma: 0.99
+    gae_lambda: 0.95
+    clip_range: 0.2
+    
+  dqn:
+    learning_rate: 0.0001
+    buffer_size: 10000
+    learning_starts: 1000
+    batch_size: 32
+    tau: 1.0
+    gamma: 0.99
+    train_freq: 4
+    
+environment:
+  state_size: 15
+  action_space: 5
+  episode_length: 30
+  reward_scaling: 100.0
+  
+actions:
+  - name: "decrease_10"
+    value: -0.10
+    description: "Baisser prix de 10%"
+    
+  - name: "decrease_5"
+    value: -0.05
+    description: "Baisser prix de 5%"
+    
+  - name: "maintain"
+    value: 0.0
+    description: "Maintenir prix"
+    
+  - name: "increase_5"
+    value: 0.05
+    description: "Augmenter prix de 5%"
+    
+  - name: "increase_10"
+    value: 0.10
+    description: "Augmenter prix de 10%"
+    
+training:
+  total_timesteps: 100000
+  save_frequency: 10000
+  eval_frequency: 5000
+  n_eval_episodes: 10
+  
+constraints:
+  min_margin_percent: 10.0
+  max_margin_percent: 300.0
+  max_price_change: 0.20
+  min_stock_alert: 10

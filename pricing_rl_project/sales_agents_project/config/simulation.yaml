@@ -1,0 +1,57 @@
+competitors:
+  - name: "Amazon"
+    strategy: "aggressive"
+    base_multiplier: 0.95
+    volatility: 0.10
+    reaction_speed: 0.9
+    promo_frequency: 0.3
+    
+  - name: "CDiscount"
+    strategy: "discount"
+    base_multiplier: 0.90
+    volatility: 0.15
+    reaction_speed: 0.7
+    promo_frequency: 0.4
+    
+  - name: "Boulanger"
+    strategy: "premium"
+    base_multiplier: 1.05
+    volatility: 0.08
+    reaction_speed: 0.6
+    promo_frequency: 0.2
+    
+  - name: "Darty"
+    strategy: "balanced"
+    base_multiplier: 1.02
+    volatility: 0.12
+    reaction_speed: 0.8
+    promo_frequency: 0.25
+    
+market:
+  base_demand: 100
+  price_elasticity: -1.8
+  seasonal_amplitude: 0.3
+  weekend_boost: 1.2
+  noise_level: 0.15
+  
+customer_profiles:
+  price_sensitive:
+    budget: [50, 200]
+    price_sensitivity: 0.8
+    loyalty: 0.3
+    
+  premium:
+    budget: [300, 1000]
+    price_sensitivity: 0.3
+    loyalty: 0.7
+    
+  urgent:
+    budget: [100, 500]
+    price_sensitivity: 0.5
+    urgency: 0.9
+    
+products:
+  initial_stock: 200
+  restock_threshold: 20
+  restock_quantity: 100
+  holding_cost: 0.01
