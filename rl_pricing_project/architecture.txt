@@ -1,0 +1,55 @@
+rl_pricing_project/
+│
+├── pretrained_models/           # ⭐ NOUVEAU - Le cœur du fine-tuning
+│   ├── __init__.py
+│   ├── downloader.py            # Télécharge modèles SB3 Zoo
+│   ├── model_adapter.py         # Adapte modèle pré-entraîné à notre env
+│   └── checkpoints/             # Stocke modèles téléchargés
+│       ├── ppo_cartpole.zip
+│       ├── ppo_lunarlander.zip
+│       └── dqn_cartpole.zip
+│
+├── environments/                # ✅ GARDER tel quel
+│   ├── __init__.py
+│   ├── pricing_env.py          
+│   └── env_registration.py     
+│
+├── models/                      # ⭐ MODIFIER cette structure
+│   ├── __init__.py
+│   ├── finetune_trainer.py      # ⭐ NOUVEAU - Remplace rl_trainer.py
+│   ├── rl_trainer.py           # ⬇️ GARDER pour comparaison/baseline
+│   └── hyperparameters/         # ✅ GARDER mais ajuster
+│       ├── ppo.yml
+│       ├── dqn.yml
+│       └── a2c.yml
+│       └── finetune.yml        # ⭐ NOUVEAU - Configs fine-tuning
+│
+├── data/                       # ✅ GARDER tel quel
+│   ├── database/
+│   └── simulator/
+│
+├── utils/                      # ✅ GARDER mais ajouter
+│   ├── config.py
+│   ├── monitoring.py
+│   ├── visualization.py
+│   └── transfer_utils.py       # ⭐ NOUVEAU - Utilitaires transfer learning
+│
+├── scripts/                    # ⭐ MODIFIER en profondeur
+│   ├── download_pretrained.py  # ⭐ NOUVEAU
+│   ├── finetune.py            # ⭐ NOUVEAU - Remplace train.py pour fine-tuning
+│   ├── train.py               # ⬇️ GARDER pour entraînement from scratch
+│   ├── evaluate.py            # ✅ GARDER mais améliorer
+│   ├── compare_methods.py     # ⭐ NOUVEAU - Compare fine-tune vs scratch
+│   └── deploy.py              # ✅ GARDER
+│
+├── configs/                    # ✅ GARDER mais ajouter
+│   ├── env_config.yaml
+│   ├── zoo_configs/
+│   └── finetune_config.yaml   # ⭐ NOUVEAU - Configs spécifiques fine-tuning
+│
+├── experiments/                # ⭐ NOUVEAU - Pour tests et comparaisons
+│   ├── __init__.py
+│   ├── ablation_study.py      # Étude impact du fine-tuning
+│   └── results/               # Stocke résultats expérimentaux
+│
+└── requirements.txt           # ✅ GARDER mais mettre à jour
